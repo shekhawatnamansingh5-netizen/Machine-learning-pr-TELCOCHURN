@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <title>ChurnLens — Customer Retention Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="ChurnLens home">
+      <span class="brand-mark"><span></span><span></span><span></span></span>
+      <span>churn<span class="brand-accent">lens</span><small>RETENTION INTELLIGENCE</small></span>
+    </a>
+    <div class="topbar-right"><span class="live-dot"></span><span id="apiStatus">Checking API…</span><span class="topbar-divider"></span><span class="version">MODEL · V1.0</span></div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> CUSTOMER ANALYTICS / PREDICTIVE AI</div>
+        <h1>See churn<br><span>before it happens.</span></h1>
+        <p class="hero-description">A machine-learning powered workspace to estimate customer churn risk from service, contract and billing signals.</p>
+        <div class="hero-pills"><span>✦ Logistic Regression</span><span>◈ Scikit-learn Pipeline</span><span>↗ FastAPI</span></div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit orbit-outer"></div><div class="orbit orbit-inner"></div>
+        <div class="visual-core"><div class="core-icon">⌁</div><div class="core-label">CHURN<br>INTELLIGENCE</div></div>
+        <div class="float-card float-card-top"><span class="float-icon">↗</span><div><small>MODEL OUTPUT</small><strong>Risk estimate</strong></div></div>
+        <div class="float-card float-card-bottom"><span class="mini-bars"><i></i><i></i><i></i><i></i><i></i></span><div><small>INPUT SIGNALS</small><strong>19 features</strong></div></div>
+        <div class="orbit-point point-one"></div><div class="orbit-point point-two"></div>
+      </div>
+    </section>
+
+    <section class="stats-strip" aria-label="Project overview">
+      <div class="stat"><span class="stat-icon purple">⌘</span><div><small>MODEL TYPE</small><strong>Classification</strong></div></div>
+      <div class="stat"><span class="stat-icon mint">◎</span><div><small>PREDICTION TARGET</small><strong>Customer churn</strong></div></div>
+      <div class="stat"><span class="stat-icon amber">↯</span><div><small>INFERENCE API</small><strong>FastAPI + Pydantic</strong></div></div>
+      <div class="stat"><span class="stat-icon blue">▤</span><div><small>DATASET</small><strong>Telco Customer Churn</strong></div></div>
+    </section>
+
+    <div class="workspace-heading">
+      <div><div class="section-kicker">PREDICTION WORKSPACE</div><h2>Customer profile</h2><p>Enter a customer profile to get a model prediction.</p></div>
+      <button class="secondary-button" type="button" id="exampleBtn"><span>✦</span> Load sample profile</button>
+    </div>
+
+    <div class="workspace">
+      <form id="predictForm" class="profile-card">
+        <div class="card-heading"><div class="card-heading-icon">01</div><div><h3>Customer details</h3><p>Personal profile and account tenure</p></div></div>
+        <div class="form-section">
+          <div class="section-label"><span class="section-symbol">◉</span> ACCOUNT PROFILE</div>
+          <div class="field-grid">
+            <label class="field"><span>Gender</span><select name="gender" required><option value="Female">Female</option><option value="Male">Male</option></select></label>
+            <label class="field"><span>Senior citizen</span><select name="SeniorCitizen" required><option value="0">No</option><option value="1">Yes</option></select></label>
+            <label class="field"><span>Partner</span><select name="Partner" required><option>Yes</option><option>No</option></select></label>
+            <label class="field"><span>Dependents</span><select name="Dependents" required><option>No</option><option>Yes</option></select></label>
+            <label class="field full"><span>Tenure <b id="tenureReadout">12 months</b></span><input name="tenure" id="tenure" type="range" min="0" max="72" value="12"><div class="range-ends"><span>New customer</span><span>6 years</span></div></label>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="section-label"><span class="section-symbol">⌁</span> SERVICES & CONNECTIVITY</div>
+          <div class="field-grid">
+            <label class="field"><span>Phone service</span><select name="PhoneService"><option>Yes</option><option>No</option></select></label>
+            <label class="field"><span>Multiple lines</span><select name="MultipleLines"><option>No</option><option>Yes</option><option>No phone service</option></select></label>
+            <label class="field"><span>Internet service</span><select name="InternetService"><option>Fiber optic</option><option>DSL</option><option>No</option></select></label>
+            <label class="field"><span>Online security</span><select name="OnlineSecurity"><option>No</option><option>Yes</option><option>No internet service</option></select></label>
+            <label class="field"><span>Online backup</span><select name="OnlineBackup"><option>No</option><option>Yes</option><option>No internet service</option></select></label>
+            <label class="field"><span>Device protection</span><select name="DeviceProtection"><option>No</option><option>Yes</option><option>No internet service</option></select></label>
+            <label class="field"><span>Tech support</span><select name="TechSupport"><option>No</option><option>Yes</option><option>No internet service</option></select></label>
+            <label class="field"><span>Streaming TV</span><select name="StreamingTV"><option>No</option><option>Yes</option><option>No internet service</option></select></label>
+            <label class="field"><span>Streaming movies</span><select name="StreamingMovies"><option>No</option><option>Yes</option><option>No internet service</option></select></label>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="section-label"><span class="section-symbol">▤</span> CONTRACT & BILLING</div>
+          <div class="field-grid">
+            <label class="field"><span>Contract</span><select name="Contract"><option>Month-to-month</option><option>One year</option><option>Two year</option></select></label>
+            <label class="field"><span>Paperless billing</span><select name="PaperlessBilling"><option>Yes</option><option>No</option></select></label>
+            <label class="field full"><span>Payment method</span><select name="PaymentMethod"><option>Electronic check</option><option>Mailed check</option><option>Bank transfer (automatic)</option><option>Credit card (automatic)</option></select></label>
+            <label class="field"><span>Monthly charges ($)</span><input name="MonthlyCharges" type="number" min="0" step="0.01" value="70.35" required></label>
+            <label class="field"><span>Total charges ($)</span><input name="TotalCharges" type="number" min="0" step="0.01" value="844.20" required></label>
+          </div>
+        </div>
+        <div class="form-footer">
+          <p><span class="secure-icon">◇</span> Inputs are sent to your configured prediction API.</p>
+          <button class="predict-button" id="predictBtn" type="submit"><span class="button-label">Analyze churn risk</span><span class="button-arrow">↗</span><span class="spinner"></span></button>
+          <p class="form-error" id="formError" role="alert"></p>
+        </div>
+      </form>
+
+      <aside class="results-column">
+        <section class="result-card" aria-live="polite">
+          <div class="result-card-top"><div><div class="section-kicker">MODEL RESPONSE</div><h3>Prediction result</h3></div><span class="result-badge" id="resultBadge">AWAITING INPUT</span></div>
+          <div id="resultEmpty" class="result-empty"><div class="empty-graphic"><div class="empty-ring ring-a"></div><div class="empty-ring ring-b"></div><div class="empty-center">?</div><span class="empty-spark spark-a">✦</span><span class="empty-spark spark-b">✧</span></div><h4>Your insight starts here.</h4><p>Submit a customer profile to reveal the model's churn prediction and estimated probability.</p><div class="empty-foot"><span></span> LIVE INFERENCE <span></span></div></div>
+          <div id="resultContent" class="result-content" hidden>
+            <div class="risk-orb" id="riskOrb"><div class="risk-number" id="riskNumber">—<small>%</small></div><span>CHURN PROBABILITY</span></div>
+            <div class="prediction-status" id="predictionStatus">Prediction</div>
+            <p class="result-explanation" id="resultExplanation">Model response will appear here.</p>
+            <div class="probability-track"><div id="probabilityFill"></div></div>
+            <div class="probability-labels"><span>Lower risk</span><span>Higher risk</span></div>
+            <div class="result-divider"></div>
+            <div class="response-row"><span>Predicted class</span><strong id="predictedClass">—</strong></div>
+            <div class="response-row"><span>Endpoint</span><strong>POST /predict</strong></div>
+            <div class="response-row"><span>Inference status</span><strong class="success-text">Complete ✓</strong></div>
+          </div>
+        </section>
+        <section class="insight-card"><div class="insight-icon">✳</div><div><h3>How to read this</h3><p>The probability is returned by your trained model. Use it as a decision-support signal—not as a guarantee of future customer behavior.</p></div></section>
+        <section class="stack-card"><div class="stack-heading">BUILT WITH <span>TECH STACK</span></div><div class="stack-tags"><span>Python</span><span>Scikit-learn</span><span>FastAPI</span><span>Pydantic</span><span>Vanilla JS</span></div></section>
+      </aside>
+    </div>
+    <footer class="footer"><span>CHURNLENS <b>·</b> ML PROJECT</span><span>Designed for customer-retention insights <span class="footer-star">✦</span></span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
